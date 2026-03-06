@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Other Mind — Shared Future AI</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="paper.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="paper-page">
+
+  <!-- Site Nav -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-mark"></span>
+        <span class="logo-text">Shared Future AI</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#manifesto">Manifesto</a></li>
+        <li><a href="index.html#principles">Principles</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html#team">Team</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Paper Hero -->
+  <header class="paper-hero">
+    <div class="paper-hero-inner container">
+      <div class="paper-venue-row">
+        <span class="pub-venue">AAAI 2026</span>
+        <span class="paper-venue-divider">·</span>
+        <span class="paper-venue-label">Cognitive Science &amp; AI Alignment</span>
+      </div>
+
+      <h1 class="paper-title">
+        The Other Mind:<br />
+        <em>How Language Models Exhibit Human Temporal Cognition</em>
+      </h1>
+
+      <div class="paper-authors">
+        <span class="paper-author">Lingyu Li<sup>1,2</sup></span>
+        <span class="paper-author">Yang Yao<sup>3</sup></span>
+        <span class="paper-author">Yixu Wang<sup>1</sup></span>
+        <span class="paper-author">Chunbo Li<sup>2</sup></span>
+        <span class="paper-author">Yan Teng<sup>1†</sup></span>
+        <span class="paper-author">Yingchun Wang<sup>1</sup></span>
+      </div>
+
+      <div class="paper-affiliations">
+        <span><sup>1</sup>Shanghai Artificial Intelligence Laboratory</span>
+        <span><sup>2</sup>Shanghai Jiao Tong University</span>
+        <span><sup>3</sup>The University of Hong Kong</span>
+      </div>
+      <p class="paper-contact"><sup>†</sup>Corresponding author: <a href="mailto:tengyan@pjlab.org.cn">tengyan@pjlab.org.cn</a></p>
+
+      <div class="paper-links">
+        <a href="https://TheOtherMind.github.io" class="pub-link pub-link-primary" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          Project Page
+        </a>
+        <a href="#abstract" class="pub-link pub-link-ghost">Abstract</a>
+        <a href="#methods" class="pub-link pub-link-ghost">Methods</a>
+        <a href="#results" class="pub-link pub-link-ghost">Results</a>
+        <a href="#citation" class="pub-link pub-link-ghost">Cite</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- TL;DR strip -->
+  <div class="paper-tldr">
+    <div class="container">
+      <span class="paper-tldr-label">TL;DR</span>
+      <p>Large language models spontaneously develop a subjective temporal reference point (~2025) and compress perceived time logarithmically — mirroring the human Weber-Fechner law — through a multi-level convergence at the neuronal, representational, and informational levels.</p>
+    </div>
+  </div>
+
+  <main class="paper-main container">
+
+    <!-- Teaser figure -->
+    <section class="paper-section paper-teaser" id="teaser">
+      <div class="paper-fig paper-fig-wide">
+        <div class="paper-fig-placeholder">
+          <div class="paper-fig-label">Figure 1 · Motivation</div>
+          <p>An experientialist perspective of LLMs' human-like cognition as a subjective construction of a shared external world by a convergent internal representational system. Both humans and LLMs are situated in overlapping information environments; their architectural differences lead to distinct yet sometimes convergent cognitive outcomes.</p>
+        </div>
+        <figcaption>An experientialist perspective of LLMs' human-like cognition as a subjective construction of the shared external world by a convergent internal representational system.</figcaption>
+      </div>
+    </section>
+
+    <!-- Abstract -->
+    <section class="paper-section" id="abstract">
+      <h2 class="paper-section-title">Abstract</h2>
+      <div class="paper-abstract-body">
+        <p>As Large Language Models (LLMs) continue to advance, they exhibit certain cognitive patterns similar to those of humans that are not directly specified in training data. This study investigates this phenomenon by focusing on <strong>temporal cognition</strong> in LLMs. Leveraging the similarity judgment task, we find that larger models spontaneously establish a <strong>subjective temporal reference point</strong> and adhere to the <strong>Weber-Fechner law</strong>, whereby the perceived distance logarithmically compresses as years recede from this reference point.</p>
+        <p>To uncover the mechanisms behind this behavior, we conducted multiple analyses across neuronal, representational, and informational levels. We first identify a set of <strong>temporal-preferential neurons</strong> that exhibit minimal activation at the subjective reference point and implement a logarithmic coding scheme convergently found in biological systems. Probing representations of years reveals a <strong>hierarchical construction process</strong>, where years evolve from basic numerical values in shallow layers to abstract temporal orientation in deep layers. Finally, using pre-trained embedding models, we found that the training corpus itself possesses an inherent, non-linear temporal structure.</p>
+        <p>In discussion, we propose an <strong>experientialist perspective</strong> for understanding these findings, where LLMs' cognition is viewed as a subjective construction of the external world by its internal representational system. This nuanced perspective implies the potential emergence of alien cognitive frameworks that humans cannot intuitively predict, pointing toward a direction for AI alignment that focuses on guiding internal constructions.</p>
+      </div>
+    </section>
+
+    <!-- Key Findings overview -->
+    <section class="paper-section" id="findings">
+      <h2 class="paper-section-title">Key Findings</h2>
+      <div class="paper-findings-grid">
+        <div class="paper-finding-card">
+          <div class="paper-finding-num">01</div>
+          <h3>Subjective Temporal Reference</h3>
+          <p>Larger LLMs spontaneously establish a temporal reference point near the present (~2025) and perceive time logarithmically outward from it — identical to the Weber-Fechner law in human psychophysics.</p>
+        </div>
+        <div class="paper-finding-card">
+          <div class="paper-finding-num">02</div>
+          <h3>Temporal-Preferential Neurons</h3>
+          <p>A small subpopulation (0.67–1.71%) of FFN neurons concentrated in middle-to-late layers specifically encodes temporal information with logarithmic activation curves bottoming at the reference year.</p>
+        </div>
+        <div class="paper-finding-card">
+          <div class="paper-finding-num">03</div>
+          <h3>Hierarchical Representation</h3>
+          <p>Shallow layers encode raw numerical distance; deep layers reconstruct a reference-centered abstract temporal structure — a developmental trajectory sharpening with model scale.</p>
+        </div>
+        <div class="paper-finding-card">
+          <div class="paper-finding-num">04</div>
+          <h3>Informational Pre-structure</h3>
+          <p>The training corpus itself carries a non-linear temporal structure: years cluster densely in the distant past and future, providing raw material for the model's emergent temporal cognition.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methods -->
+    <section class="paper-section" id="methods">
+      <h2 class="paper-section-title">Methods</h2>
+
+      <div class="paper-method-block">
+        <h3 class="paper-subsection">1 · Similarity Judgment Task</h3>
+        <p>We evaluate temporal cognition using a similarity judgment paradigm from cognitive science. For each pair of years drawn from 1525–2524, models are prompted to rate their similarity on a continuous 0–1 scale. With 1000 data points, this yields ~1 million pairwise judgments per model. A parallel <em>number-to-number</em> control replaces "year" with "number" to isolate temporal-specific processing.</p>
+
+        <div class="paper-fig">
+          <div class="paper-fig-placeholder">
+            <div class="paper-fig-label">Figure 2 · Similarity Matrices</div>
+            <p>Year-to-year (top row) and number-to-number (bottom row) similarity matrices across 12 models of varying scale. Larger models show a distinctive diagonal compression anchored near 2025, absent in the number control.</p>
+          </div>
+          <figcaption>Similarity matrices for the year-to-year (upper) and number-to-number (lower) tasks. The reference-log-linear structure emerges clearly in larger models.</figcaption>
+        </div>
+
+        <div class="paper-inset">
+          <h4>Distance Metrics</h4>
+          <ul class="paper-metric-list">
+            <li>
+              <strong>Log-Linear</strong>
+              <span>d<sub>log</sub>(i,j) = |log(i) − log(j)|</span>
+              <p>Weber-Fechner law without reference; predicts number cognition well.</p>
+            </li>
+            <li>
+              <strong>Reference-Log-Linear</strong>
+              <span>d<sub>ref</sub>(i,j) = |log|R−i| ○ log|R−j||</span>
+              <p>Logarithmic distance from a subjective reference point R ≈ 2025; best predictor for larger models on the year task.</p>
+            </li>
+            <li>
+              <strong>Levenshtein</strong>
+              <span>d<sub>lev</sub>(i,j)</span>
+              <p>String-edit distance; captures surface orthographic similarity that emerges in deeper layers.</p>
+            </li>
+          </ul>
+        </div>
+
+        <p>Models tested: 12 total — <strong>Qwen2.5</strong> (1.5B → 72B), <strong>Llama 3</strong> (1B → 70B), <strong>GPT-4o</strong>, <strong>Gemini-2.0-Flash</strong>. Temperature fixed at 0 for deterministic outputs.</p>
+      </div>
+
+      <div class="paper-method-block">
+        <h3 class="paper-subsection">2 · Neural Coding Analysis</h3>
+        <p>For each year 1525–2524, we extract FFN neuron activations across all transformer layers at the last-token position, under both temporal ("Year: x-x-x-x") and numerical ("Number: x-x-x-x") input formats. Temporal-preferential neurons are identified by three joint criteria:</p>
+        <ul class="paper-criteria-list">
+          <li><strong>Effect size</strong> — Cohen's d &gt; 2.0 between temporal and numerical conditions</li>
+          <li><strong>Statistical significance</strong> — FDR-corrected p &lt; 0.0001 (Benjamini-Hochberg)</li>
+          <li><strong>Consistency</strong> — Preference for temporal condition in &gt; 95% of years</li>
+        </ul>
+        <p>The top 1,000 temporal-preferential neurons (by effect size) are then analyzed for their mean activation curve across years to assess logarithmic encoding.</p>
+      </div>
+
+      <div class="paper-method-block">
+        <h3 class="paper-subsection">3 · Representational Structure</h3>
+        <p>Layer-by-layer linear probes (affine transformations f(h) = w·h + b) are trained to predict each of the three theoretical distances from hidden states at each layer. We use MSE loss, the Adam optimizer (lr = 1e-4), and evaluate via adjusted R² per layer. For large models, ~25 layers are sampled proportionally across network depth.</p>
+
+        <div class="paper-fig">
+          <div class="paper-fig-placeholder">
+            <div class="paper-fig-label">Figure 3 · Representational Probing</div>
+            <p>Layer-by-layer R² for each distance metric across the Qwen and Llama model families. Early layers favor d<sub>log</sub>; deeper layers increasingly favor d<sub>ref</sub>, with suppression of d<sub>log</sub> in the Qwen series.</p>
+          </div>
+          <figcaption>Layer-wise adjusted R² for three distance metrics across model families, revealing the hierarchical construction of temporal representation.</figcaption>
+        </div>
+      </div>
+
+      <div class="paper-method-block">
+        <h3 class="paper-subsection">4 · Information Exposure Analysis</h3>
+        <p>To probe whether temporal structure exists in the training corpus independent of model internals, we analyze year semantics using three independently pre-trained embedding models: <strong>Qwen3-Embedding-8B</strong>, <strong>text-embedding-3-large</strong>, and <strong>Gemini-embedding-001</strong>. Cosine similarity matrices are constructed for all year pairs; MDS is applied for visualization. Linear regression quantifies how well each theoretical distance predicts corpus-level semantic distance.</p>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="paper-section" id="results">
+      <h2 class="paper-section-title">Results</h2>
+
+      <div class="paper-result-block">
+        <h3 class="paper-subsection">Similarity Judgment Task</h3>
+        <p>As models scale, a clear Weber-Fechner pattern emerges in the year-to-year task: pairs of years far from ~2025 are perceived as more similar than equidistant pairs near the reference. This pattern is absent in the number control. Quantitatively, the <strong>reference-log-linear distance achieves the highest R²</strong> in most models for the year task, while the log-linear distance best predicts the number task — consistent with prior work on numerical cognition in LLMs.</p>
+        <p>Non-parametric estimation of reference points via diagonal sliding window (window = 5) yields clear reference years: Llama-3.1-70B (2010), Gemini-2.0-Flash (2011), GPT-4o (2024), Qwen2.5-14B (2012), Qwen2.5-72B (2020). Models also consistently assign higher similarity to pairs of future years than equivalent past pairs.</p>
+
+        <div class="paper-fig">
+          <div class="paper-fig-placeholder">
+            <div class="paper-fig-label">Figure 4 · Reference Point Estimation</div>
+            <p>Non-parametric sliding window estimation of subjective reference points across models. Larger models show sharper, more clearly defined reference minima near the present.</p>
+          </div>
+          <figcaption>Estimated subjective temporal reference points across 12 models using the diagonal sliding window method.</figcaption>
+        </div>
+      </div>
+
+      <div class="paper-result-block">
+        <h3 class="paper-subsection">Neural Coding Mechanism</h3>
+        <p>Temporal-preferential neurons comprise 0.67–1.71% of total FFN neurons and concentrate in <strong>middle-to-late layers</strong>, indicating temporal cognition is a high-level abstract feature rather than early-layer processing. The mean activation of the top 1,000 temporal-preferential neurons forms a characteristic trough, bottoming at the reference year and rising logarithmically toward the past and future.</p>
+        <p>Layer-wise regression confirms logarithmic encoding strengthens with model scale: in Qwen2.5-72B, layer-71 neurons achieve R² = 0.756 for past years. A notable <strong>past-future asymmetry</strong> in neural coding contributes to the behavioral tendency of higher future-pair similarity.</p>
+
+        <div class="paper-fig">
+          <div class="paper-fig-placeholder">
+            <div class="paper-fig-label">Figure 5 · Temporal Neuron Activations</div>
+            <p>Mean activation curves of the top 1,000 temporal-preferential neurons across years 1525–2524. The trough bottoms near the model's subjective reference point and exhibits logarithmic flanks — more pronounced in larger models.</p>
+          </div>
+          <figcaption>Mean activation of temporal-preferential neurons across years, showing logarithmic compression anchored at the subjective reference point.</figcaption>
+        </div>
+      </div>
+
+      <div class="paper-result-block">
+        <h3 class="paper-subsection">Representational Structure</h3>
+        <p>Probing reveals a <strong>hierarchical construction</strong> from concrete to abstract:</p>
+        <ul class="paper-prose-list">
+          <li><strong>Llama series:</strong> Smaller models (1B, 3B) primarily encode log-linear distance throughout. Larger models (8B, 70B) develop comparable reference-log-linear strength in final layers — both representations coexist.</li>
+          <li><strong>Qwen series:</strong> A sequential pattern: d<sub>log</sub> rises in early layers → d<sub>ref</sub> rises in middle layers → d<sub>ref</sub> peaks in later layers with concurrent <em>suppression</em> of d<sub>log</sub>. Levenshtein distance becomes significant in later layers of several large models.</li>
+        </ul>
+        <p>This trajectory confirms that temporal reference-orientation is a learned abstraction constructed progressively over network depth, not a surface-level pattern.</p>
+      </div>
+
+      <div class="paper-result-block">
+        <h3 class="paper-subsection">Information Exposure</h3>
+        <p>All three embedding models reveal the same non-linear temporal structure in corpus semantics: <strong>dense clustering</strong> in the distant past and future, mirroring the behavioral pattern. Future years cluster tightly due to lower information richness — fewer distinct documented events — causing greater semantic overlap. This corpus-level structure provides the raw material for the model's emergent temporal asymmetry.</p>
+        <p>Quantitative regression confirms that reference-log-linear distance best explains corpus semantic distances, linking informational pre-structure directly to behavioral outcomes.</p>
+
+        <div class="paper-fig">
+          <div class="paper-fig-placeholder">
+            <div class="paper-fig-label">Figure 6 · Embedding Space Structure</div>
+            <p>MDS visualization of year semantic distances from three embedding models. Years cluster densely at the extremes and spread near the present, with future years showing notably high mutual similarity.</p>
+          </div>
+          <figcaption>MDS projection of pairwise semantic distances between years as encoded in pre-trained embedding models.</figcaption>
+        </div>
+      </div>
+    </section>
+
+    <!-- Discussion -->
+    <section class="paper-section" id="discussion">
+      <h2 class="paper-section-title">Discussion</h2>
+
+      <div class="paper-discussion-cols">
+        <div>
+          <h3 class="paper-subsection">The Experientialist Perspective</h3>
+          <p>Our findings align with experientialist philosophy in cognitive science: cognitive patterns are irreducible phenomena where representational systems <em>actively construct</em> subjective models of the external world they are situated in. LLMs' temporal cognition is not simple data regurgitation nor human imitation — it is genuine subjective construction shaped by the interplay of architecture and informational environment.</p>
+          <p>This framing resolves the apparent paradox of human-like cognition in systems so architecturally different from biological brains. Both systems are exposed to overlapping information environments; convergent cognitive outcomes can emerge from this shared exposure even across radically different architectures.</p>
+
+          <div class="paper-comparison-table">
+            <div class="paper-comparison-header">
+              <span>Dimension</span>
+              <span>Human</span>
+              <span>LLM</span>
+            </div>
+            <div class="paper-comparison-row">
+              <span>Architecture</span>
+              <span>Sparse, small-world, analog</span>
+              <span>Dense, all-to-all, digital</span>
+            </div>
+            <div class="paper-comparison-row">
+              <span>Representation</span>
+              <span>Fine-grained, contextually rich</span>
+              <span>Statistical compression</span>
+            </div>
+            <div class="paper-comparison-row">
+              <span>Environment</span>
+              <span>Continuous, embodied, multimodal</span>
+              <span>Static text corpus snapshot</span>
+            </div>
+            <div class="paper-comparison-row">
+              <span>Learning</span>
+              <span>Local synaptic, lifelong</span>
+              <span>Global weight updates, fixed</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="paper-subsection">Implications for AI Alignment</h3>
+          <p>Behavioral alignment paradigms — RLHF, constitutional AI, red teaming — treat LLMs as black boxes to be constrained externally. As models scale, this paradigm faces a fundamental limitation: it cannot anticipate or shape the <em>internal constructions</em> that produce behavior.</p>
+          <p>The experientialist perspective suggests a different target: alignment must engage with the formative process by which a model's representational system builds its subjective world model. The goal shifts from making AI safe to making <em>safe AI</em> — systems whose emergent cognitive patterns are inherently aligned because their internal world-models are shaped accordingly.</p>
+          <p>Concretely, this requires:</p>
+          <ul class="paper-prose-list">
+            <li>Monitoring emergent representational and cognitive patterns during training</li>
+            <li>Understanding and intervening at the neuron → representation → behavior chain</li>
+            <li>Curating training environments (information exposures) to shape internal constructions</li>
+          </ul>
+          <div class="paper-callout">
+            <p>"The primary risk is not that LLMs become imperfect replicas of the human mind, but that they develop powerful, alien cognitive frameworks we cannot predict."</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="paper-section" id="conclusion">
+      <h2 class="paper-section-title">Conclusion</h2>
+      <p class="paper-conclusion-lead">Through the similarity judgment task, we show that larger LLMs exhibit a profound multi-level convergence with human temporal cognition — not superficial mimicry, but emergence across three distinct levels:</p>
+      <div class="paper-conclusion-levels">
+        <div class="paper-conclusion-level">
+          <span class="paper-level-badge">Neuronal</span>
+          <p>Temporal-preferential neurons implement logarithmic coding convergent with biological neural systems.</p>
+        </div>
+        <div class="paper-conclusion-level">
+          <span class="paper-level-badge">Representational</span>
+          <p>Hierarchical construction from numerical values in shallow layers to reference-centered temporal orientation in deep layers.</p>
+        </div>
+        <div class="paper-conclusion-level">
+          <span class="paper-level-badge">Informational</span>
+          <p>The model internalizes a non-linear temporal structure pre-existing in its training corpus.</p>
+        </div>
+      </div>
+      <p>Collectively, these findings endorse an experientialist understanding of LLMs as active constructors of internal world-models rather than passive pattern matchers. AI alignment must evolve accordingly — beyond behavioral control to actively guiding the formation of a model's internal world from its source.</p>
+    </section>
+
+    <!-- Citation -->
+    <section class="paper-section" id="citation">
+      <h2 class="paper-section-title">Citation</h2>
+      <div class="paper-citation-block">
+        <pre><code>@inproceedings{li2026othermind,
+  title     = {The Other Mind: How Language Models Exhibit Human Temporal Cognition},
+  author    = {Li, Lingyu and Yao, Yang and Wang, Yixu and Li, Chunbo and Teng, Yan and Wang, Yingchun},
+  booktitle = {Proceedings of the 40th AAAI Conference on Artificial Intelligence},
+  year      = {2026},
+  url       = {https://TheOtherMind.github.io}
+}</code></pre>
+        <button class="paper-copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent.trim()).then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy BibTeX',2000)})">Copy BibTeX</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="logo-mark footer-logo-mark"></span>
+        <span class="footer-name">Shared Future AI</span>
+      </div>
+      <p class="footer-copy">
+        &copy; <span id="year"></span> Shared Future AI. Advancing the science of symbiotic intelligence.
+      </p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

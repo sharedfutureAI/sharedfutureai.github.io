@@ -949,6 +949,19 @@ a {
   box-shadow: 0 6px 24px var(--accent-glow);
 }
 
+.pub-link-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+.pub-link-ghost:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
+}
+
 @media (max-width: 900px) {
   .pub-card-inner {
     padding: 28px 28px;
