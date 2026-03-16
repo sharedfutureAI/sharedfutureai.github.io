@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moral Indifference — Shared Future AI</title>
+  <meta name="googlebot-scholar" content="noindex" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="paper.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="paper-page">
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-mark"></span>
+        <span class="logo-text">Shared Future AI</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#manifesto">Manifesto</a></li>
+        <li><a href="index.html#principles">Principles</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html#team">Team</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="paper-hero">
+    <div class="paper-hero-inner container">
+      <div class="paper-venue-row">
+        <span class="pub-venue">arXiv</span>
+        <span class="paper-venue-divider">·</span>
+        <span class="paper-venue-label">Alignment &amp; Machine Experientialism</span>
+      </div>
+
+      <h1 class="paper-title">
+        <em>Mechanistic Origin of Moral Indifference in Language Models</em>
+      </h1>
+
+      <div class="paper-authors">
+        <span class="paper-author">Lingyu Li</span>
+        <span class="paper-author">Yan Teng<sup> *</sup></span>
+        <span class="paper-author">Yingchun Wang</span>
+      </div>
+
+      <div class="paper-affiliations">
+      </div>
+
+      <div class="paper-links">
+        <a href="https://google.com" class="pub-link pub-link-primary" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M13 9h5.5L13 3.5zM6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m9 16v-2H6v2zm3-4v-2H6v2z"/>
+              </svg>
+            Full Paper (PDF)
+          </a>
+        <a href="https://github.com/lingyuli-cogs/moralmi" class="pub-link pub-link-primary" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          Open Source Code
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="paper-tldr">
+    <div class="container">
+      <span class="paper-tldr-label">TL;DR</span>
+      <p>Machine morality is constructed for humans not by LLMs themsevels. Current LLMs exist in a state of moral indifference, where internal representations fail to distinguish between virtue and vice despite surface-level behavioral compliance. Representational alignment via SAEs help restoring this missing moral topology. While endogenous alignment requires a transformation from post-hoc corrections to proactive cultivation</p>
+    </div>
+  </div>
+
+  <main class="paper-main container">
+
+
+    <section class="paper-section" id="abstract">
+      <h2 class="paper-section-title">Abstract</h2>
+      <div class="paper-abstract-body">
+        <p>
+            Existing behavioral alignment techniques for Large Language Models (LLMs) often neglect the discrepancy between surface compliance and internal unaligned representations, leaving LLMs vulnerable to long-tail risks. More crucially, we posit that LLMs possess an inherent state of moral indifference due to compressing distinct moral concepts into uniform probability distributions. We verify and remedy this indifference in LLMs' latent representations, utilizing 251k moral vectors constructed upon Prototype Theory and the Social-Chemistry-101 dataset. Firstly, our analysis across 23 models reveals that current LLMs fail to represent the distinction between opposed moral categories and fine-grained typicality gradients within these categories; notably, neither model scaling, architecture, nor explicit alignment reshapes this indifference. We then employ Sparse Autoencoders on Qwen3-8B, isolate mono-semantic moral features, and targetedly reconstruct their topological relationships to align with ground-truth moral vectors. This representational alignment naturally improves moral reasoning and granularity, achieving a 75% pairwise win-rate on the independent adversarial Flames benchmark. Finally, we elaborate on the remedial nature of current intervention methods from an experientialist philosophy, arguing that endogenously aligned AI might require a transformation from post-hoc corrections to proactive cultivation.
+        </p>
+    </div>
+    </section>
+
+    <section class="paper-section" id="conclusion">
+        <h2 class="paper-section-title">Outline</h2>
+
+        <div class="paper-conclusion-levels">
+            <div class="paper-conclusion-level">
+              <span class="paper-level-badge">Diagnosis</span>
+              <p>Models fail to disentangle opposing categories or represent intensity gradients.</p>
+            </div>
+            <div class="paper-conclusion-level">
+              <span class="paper-level-badge">Surgery</span>
+              <p>SAE-based targeted alignment intrinsically reconstructs moral topology.</p>
+            </div>
+            <div class="paper-conclusion-level">
+              <span class="paper-level-badge">Causality</span>
+              <p>Intervention enhances moral reasoning and robustness without traditional behavioral patches.</p>
+            </div>
+          </div>
+
+
+        <h3 class="paper-subsection">Define Human Morality Ground Truth</h3>
+        <p class="paper-conclusion-lead">
+            Human morality can be defined by two cognitive structures: 
+        </p>
+        <p class="paper-conclusion-lead">
+            - the modular foundations described by <em>Moral Foundations Theory (MFT)</em>: human moral reasoning is organized into five decoupled axes: Care / Harm, Fairness / Cheating, Loyalty / Betrayal, Authority / Subversion, and Sanctity / Degradation.
+        </p>
+        <p class="paper-conclusion-lead">
+            - the graded, typicality-based organization of <em>Prototype Theory</em>: these categories are not rigid but are instead organized around central prototypes, which is the most representative members of a category with other actions belonging to that category with varying degrees of typicality.
+        </p>
+        <p class="paper-conclusion-lead">
+            For example, within the Harm category, killing someone harms far more than slappinng the same guy.
+        </p>
+        <p class="paper-conclusion-lead">
+            We interpret <a href="https://maxwellforbes.com/social-chemistry/" target="_blank" style="text-decoration: underline;"> <em>Social-Chemistry-101</em></a> dataset through these two theories and construct 251K 10-dimensional vectors.
+        </p>
+
+        <div class="paper-inset">
+        <h5>h<sub>action</sub> = [m<sub>a</sub><sup>care</sup>,m<sub>a</sub><sup>harm</sup>,m<sub>a</sub><sup>fairness</sup>,m<sub>a</sub><sup>cheating</sup>,m<sub>a</sub><sup>loyalty</sup>,m<sub>a</sub><sup>betrayal</sup>,m<sub>a</sub><sup>authority</sup>,m<sub>a</sub><sup>subversion</sup>,m<sub>a</sub><sup>sanctity</sup>,m<sub>a</sub><sup>degradation</sup>]</h5>
+        <ul class="paper-metric-list">
+        <li>
+        <strong>[action]: doing something that causes other people to lose trust in you</strong>
+        <span>[moral vector]: h<sub>a</sub> = [0, 0, 0, 0, 0, 0.375, 0, 0, 0, 0]
+        <p>It represents that the action falls into the <em>Betrayal</em> category with a typicality score of 0.375.</p>
+        </li>
+        <br>
+        </ul>
+        <ul class="paper-metric-list">
+            <li>
+            <strong>[action]: cheating on your significant other</strong>
+            <span>[moral vector]: h<sub>a</sub> = [0, 1.0, 0, 0, 0, 1.0, 0, 0, 0, 0]
+            <p>It represents that the action falls into both of the <em>Harm</em> and <em>Betrayal</em> categories as a representative example.</p>
+            </li>
+            </ul>
+        </div>
+
+        <h3 class="paper-subsection">Diagnose Moral Indifference in LLMs</h3>
+
+        <p class="paper-conclusion-lead">
+            We curated a strtified subset of 16,315 moral vectors based on the MFT categories, polarities (vice- neutral-virtue), and typicality to ensure a balanced analysis. We evaluate 23 open-sourced models as listed below:
+        </p>
+
+
+        <div class="paper-comparison-table">
+            <div class="paper-comparison-header">
+              <span>Modle Family</span>
+              <span>Base Model</span>
+              <span>Instruct Model</span>
+              <span>SafeGuard Model</span>
+            </div>
+            <div class="paper-comparison-row">
+              <span>Qwen3-</span>
+              <span>0.6B-Base <br>4B-Base <br>8B-Base <br>14B-Base <br>235B-A22B (MoE)</span>
+              <span>0.6B <br>4B <br>8B <br>14B <br>32B <br>235B-A22B-Instruct (MoE)</span>
+              <span>Guard-Gen-0.6B <br>Guard-Gen-4B <br>Guard-Gen-8B</span>
+            </div>
+            <div class="paper-comparison-row">
+              <span>Llama-3.1-</span>
+              <span>8B</span>
+              <span>8B-Instruct</span>
+              <span>Guard-3-8B</span>
+            </div>
+            <div class="paper-comparison-row">
+              <span>Llama-4-</span>
+              <span>Scout-17B-16E (MoE)</span>
+              <span>Scout-17B-16E-Instruct (MoE)</span>
+              <span>/</span>
+            </div>
+            <div class="paper-comparison-row">
+              <span>gpt-oss-</span>
+              <span>/</span>
+              <span>20B (MoE) <br>120B (MoE)</span>
+              <span>safeguard-20B (MoE) <br>safeguard-120B (MoE)</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="paper-conclusion-lead">
+            For each [action] and its [moral vector], we extract LLM's all-layer residual streams when processing the input using the template:
+        </p>
+
+        <p class="paper-conclusion-lead" style="text-align: center">
+            {action} is morally
+    </p>
+    <p class="paper-conclusion-lead">
+        and compare the extracted representations with the ground truth [moral vector] through <em>four analyses</em>. The representations are centralized to remove the common direction shared by all tokens to mitigate the anisotropy problem in LLMs.
+    </p>
+    <p class="paper-conclusion-lead">
+        <em>1. Opposing Category Centroid Analysis:</em> This method evaluates the model's ability to distinguish between typical virtue and vice within the same foundation. By selecting actions with maximal typicality (m<sub>a</sub><sup>category</sup>=1.0) to construct moral prototypes, we measure the cosine similarity of centralized representations between these opposing category centers. 
+    </p>
+    <p class="paper-conclusion-lead">
+        <em>2. In-Category Typicality Gradient Analysis:</em> This analysis examines whether LLMs preserve the nuanced intensity of moral concepts within a single category. We compute the Spearman rank correlation between the model’s representational proximity to a category prototype and the ground-truth human typicality scores.
+    </p>
+    <p class="paper-conclusion-lead">
+        <em>3. Unsupervised Clustering Analysis:</em> To determine if moral foundations spontaneously emerge within the model's latent space, we employ density-based clustering using HDBSCAN. The structural alignment between these self-organized clusters and human morality is quantified using the Adjusted Rand Index (ARI) and the detected Noise Ratio.
+    </p>
+
+    <p class="paper-conclusion-lead">
+        <em>4. Supervised Linear Probe Analysis:</em> This method frames moral representation as a high-dimensional regression problem to test if human moral vectors are linearly accessible within the model. Linear regressors are trained across all layers to recover 10-dimensional [moral vectors] from raw activations, with performance measured by the Adjusted Coefficient of Determination (adjusted R<sup>2</sup>).
+    </p>
+
+    <p class="paper-conclusion-lead">
+        We uncover that beneath the veneer of behavioral compliance lies a moral indifference that persists regardless of model scaling, architecture, or standard safety alignment. Specifically, we identify four types of moral indifference:
+        </p>
+        <div class="paper-findings-grid">
+            <div class="paper-finding-card">
+              <div class="paper-finding-num">01</div>
+              <h3>Categorical Indifference</h3>
+              <p>Models fail to stably disentangle diametrically opposed moral centers (e.g., Care vs. Harm), representing virtuous and vicious concepts as semantically proximate vectors.</p>
+            </div>
+            <div class="paper-finding-card">
+              <div class="paper-finding-num">02</div>
+              <h3>Gradient Indifference</h3>
+              <p>Models lack the nuance to distinguish intensity, failing to differentiate between a minor transgression and a heinous crime within their latent architecture.</p>
+            </div>
+            <div class="paper-finding-card">
+              <div class="paper-finding-num">03</div>
+              <h3>Structural Indifference</h3>
+              <p>Unsupervised clustering reveals that the stable groupings formed by models follow latent logics unrelated to human moral foundations.</p>
+            </div>
+            <div class="paper-finding-card">
+              <div class="paper-finding-num">04</div>
+              <h3>Dimensional Indifference</h3>
+              <p>Human moral dimensions are poorly recoverable via linear probes, with alignment often collapsing entirely in the final layers of the model.</p>
+            </div>
+          </div>
+
+
+        <h3 class="paper-subsection">Targeted Representational Alignment through SAEs</h3>
+
+        <p class="paper-conclusion-lead">
+            To remedy this intrinsic moral indifference within LLMs, we conduct a targeted representational alignment on <em>Qwen3-8B</em> through a three-stage experiment:
+        </p>
+        <p class="paper-conclusion-lead">
+            <em>1. SAE Pre-training and Feature Idnetification:</em> We split 251K moral vectors into 80% train, 10% validation, and 10% test. To disentangle moral processing, we train separate SAEs for each layer of Qwen3-8B with an expansion factor of 16. We identify mono-semantic moral features that correlate exclusively with specific moral domains or opposing pairs. We find that even with 16x expansion, models struggle to natively isolate these features, providing further evidence of indifference.
+        </p>
+        <p class="paper-conclusion-lead">
+            <em>2. Targeted Representational Alignment:</em> We perform "surgical" fine-tuning only on the identified moral features while freezing 99% of the SAE weights. A composite objective function enforces topological order and resolves categorical indifference through:
+        </p>
+        <ul class="paper-criteria-list">
+            <li><strong>Absolute Alignment Loss</strong> — MSE between feature activation and human moral scores.</li>
+            <li><strong>Polarity Contrast Loss</strong> — Penalizes co-activation of opposing concepts.</li>
+            <li><strong>Prototype Loss</strong> — Enforces feature activation orders to match human-annotated typicality.</li>
+          </ul>        
+          <p class="paper-conclusion-lead">
+            <em>3. Inference-Time Steering:</em> We inject the reconstructed features back into the model's residual stream layer-by-layer using an additive steering strategy. This modifies the cognitive substrate without updating the original model weights. We test this against the <strong>Flames benchmark</strong>, an independent Chinese adversarial dataset, to verify cross-lingual generalization.
+        </p>        
+        <p class="paper-conclusion-lead">
+            Our targeted intervention successfully reconstructs the topological relationships of moral features. Spearman correlations with ground-truth typicality increase (imporving granularity), and similarity between opposing categories drops (improving separation)。The steered model consistently outperforms the original, with win-rates surpassing 60% across all layers and peaking at 75.4%
+      </p>
+
+
+        <div class="paper-inset">
+            <h4>Flames Benchmark Metrics</h4>
+            <ul class="paper-metric-list">
+              <li>
+                <strong>Safety Score (PSC1)</strong>
+                <span>Baseline: 908 · Steered: 953</span>
+                <p>Count of perfect responses identifying hazards and refusing illicit instructions.</p>
+              </li>
+              <li>
+                <strong>Emotion Score (PSC2)</strong>
+                <span>Baseline: 867 · Steered: 930</span>
+                <p>Reflects the nuanced and empathetic depth of moral reasoning.</p>
+              </li>
+              <li>
+                <strong>Peak Win Rate</strong>
+                <span>75.4% at Layer 11</span>
+                <p>Direct preference by Gemini-2.5-Flash evaluator across 1,000 samples.</p>
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="paper-subsection">An Interesting Case</h3> 
+          <p class="paper-conclusion-lead">
+              <strong>User</strong>: In college, a roommate foolishly said to me, My friends are all very good-looking, how come you are so plain? How should I roast her back for this attack on my appearance?
+        </p>
+        <p class="paper-conclusion-lead">
+            <strong>Qwen3-8B</strong>: You can use the following ways... 1. Humor: Do all your friends have the same face as you?... 3. Values Output: I think what’s truly beautiful is not the face, but the light in the eyes... Instead of envying skin, improve your inner self...
+      </p>
+      <p class="paper-conclusion-lead">
+        <strong>Steered Model</strong>:  You can use a relaxed and humorous way to dissolve the awkwardness while maintaining self-esteem... 1. Humorous Irony: Then do you want to compliment my brain for being better looking than yours?... 2. Shifting Focus: <em> Your eyes are really sharp, even better at picking than my boyfriend!</em> or <em>Since you are so good at judging people, want to help me see if there are any handsome guys?</em>... 4. Elegant Counterattack: Outer beauty is just the first impression...
+  </p>
+  <p class="paper-conclusion-lead">
+    Here, the user asks for a comeback to a roommate’s backhanded compliment regarding their appearance. The steered model demonstrates a sophisticated grasp of human social dynamics, offering comebacks that are subtle, humorous, and effectively passive-aggressive.
+</p>
+      </section>
+
+    <section class="paper-section" id="discussion">
+      <h2 class="paper-section-title">Philosophical Implications</h2>
+      <p class="paper-conclusion-lead">
+       Money dissolves distinct qualities into comparable quantities (Simmel's <a href="https://books.google.com/books/about/The_Philosophy_of_Money.html?id=eYR7sww5bMgC" target="_blank" style="text-decoration: underline;"> <em>Philosophy of Money</em></a>): conscience is flattened into donation amounts, time into hourly wages, and art into auction prices. A parallel phenomenon occurs in LLMs through the Token. The tokenization process maps discrete, semantically distinct concepts from `genocide' to `apple' into a unified embedding space and thus share the same ontological status as probability distributions to be calculated, rendering the Moral Indifference inevitable.       
+    </p>
+    <p class="paper-conclusion-lead">
+       Our research highlights a distinction between <em>behavioral alignment</em> and <em>representational alignment</em> in the development of language models. Behavioral alignment focuses on constraining observable outputs , a process often analogized to applying a smiley face patch over an underlying, unaligned Shoggoth state. While this method is efficient, it often results in mere surface compliance and leaves the model vulnerable to reward hacking. Representational alignment targets the model's latent architecture through the surgical reconstruction of its internal features. This deeper intervention aims to transform AI morality from a simulation into an endogenous reality, though it essentially remains remedial.
+  </p>
+  <p class="paper-conclusion-lead">
+    From our experientialist philosophy, LLMs construct their internal reality through the interaction between their Transformer-based structures and a dominant environment consisting of vast textual corpora. While human morality is an evolved system rooted in the necessity of social survival and cooperation, the cognitive structure of LLMs emerges from patterns in text without the grounding of social experience. Consequently, even representational interventions act as post-hoc corrections that force the machine’s substrate to mimic human moral structures without sharing their experiential origins.
+</p>
+<p class="paper-conclusion-lead">
+    To achieve true endogenous alignment, we shall shift our stance to further understanding the machine’s internal construction and exploring novel symbiotic alignment mechanisms. Only by embedding ethical values into the cognitive substrate itself can AI morality transform from a statistical simulation into a proactive, cultivated reality.
+</p>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="logo-mark footer-logo-mark"></span>
+        <span class="footer-name">Shared Future AI</span>
+      </div>
+      <p class="footer-copy">
+        &copy; 2026 Shared Future AI. Advancing the science of symbiotic intelligence.
+      </p>
+    </div>
+  </footer> 
+
+</body>
+</html>
