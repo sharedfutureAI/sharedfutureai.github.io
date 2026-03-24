@@ -5,7 +5,8 @@
 'use strict';
 
 // ── Year ──────────────────────────────────────────────────────
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ── Nav: scroll-based style ───────────────────────────────────
 (function () {
@@ -94,7 +95,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     { amp: 20, freq: 0.0058, speed: 0.62, yFrac: 0.64, alpha: 0.036 },
     { amp: 13, freq: 0.0085, speed: 0.82, yFrac: 0.72, alpha: 0.026 },
     { amp:  8, freq: 0.012,  speed: 1.05, yFrac: 0.80, alpha: 0.018 },
-    { amp:  5, freq: 0.017,  speed: 1.30, yFrac: 0.88, alpha: 0.012 },
+    { amp:  5, freq: 0.017,  speed: 1.5, yFrac: 0.88, alpha: 0.012 },
   ];
 
   // Horizontal flow streams — thin sinuous lines crossing the canvas
