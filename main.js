@@ -78,136 +78,130 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   targets.forEach(el => io.observe(el));
 })();
 
-// ── Hero Canvas: water effect ─────────────────────────────────
+// ── Water canvas effect — runs on every .water-canvas ─────────
 (function () {
-  const canvas = document.getElementById('heroCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
   const C = '0, 102, 68'; // accent color channels
-  let W, H, t = 0;
-  const ripples = [];
 
-  // Layered wave fills — each drifts at its own frequency & speed
   const WAVES = [
     { amp: 42, freq: 0.0022, speed: 0.28, yFrac: 0.48, alpha: 0.055 },
     { amp: 30, freq: 0.0038, speed: 0.44, yFrac: 0.56, alpha: 0.045 },
     { amp: 20, freq: 0.0058, speed: 0.62, yFrac: 0.64, alpha: 0.036 },
     { amp: 13, freq: 0.0085, speed: 0.82, yFrac: 0.72, alpha: 0.026 },
     { amp:  8, freq: 0.012,  speed: 1.05, yFrac: 0.80, alpha: 0.018 },
-    { amp:  5, freq: 0.017,  speed: 1.5, yFrac: 0.88, alpha: 0.012 },
+    { amp:  5, freq: 0.017,  speed: 1.5,  yFrac: 0.88, alpha: 0.012 },
   ];
 
-  // Horizontal flow streams — thin sinuous lines crossing the canvas
-  let STREAMS = [];
-  function buildStreams() {
-    STREAMS = Array.from({ length: 14 }, (_, i) => ({
-      yFrac: 0.08 + (i / 13) * 0.86,
-      phase:  Math.random() * Math.PI * 2,
-      speed:  0.18 + Math.random() * 0.28,
-      amp:    4  + Math.random() * 12,
-      freq:   0.0018 + Math.random() * 0.003,
-      alpha:  0.025 + Math.random() * 0.038,
-      lw:     0.35 + Math.random() * 0.7,
-    }));
-  }
+  function initWaterCanvas(canvas) {
+    const ctx = canvas.getContext('2d');
+    let W, H, t = 0;
+    const ripples = [];
+    let STREAMS = [];
 
-  function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-
-  function addRipple(x, y, strength) {
-    // outer ring
-    ripples.push({ x, y, r: 2, maxR: 180 * strength, alpha: 0.38 * strength, decay: 0.012 });
-    // middle ring (delayed by giving it a head-start radius)
-    ripples.push({ x, y, r: 2, maxR: 110 * strength, alpha: 0.22 * strength, decay: 0.016 });
-    // inner ring
-    ripples.push({ x, y, r: 2, maxR:  55 * strength, alpha: 0.14 * strength, decay: 0.022 });
-  }
-
-  function drawWaves() {
-    WAVES.forEach(w => {
-      const yBase = H * w.yFrac;
-      ctx.beginPath();
-      ctx.moveTo(0, H);
-      for (let x = 0; x <= W + 4; x += 3) {
-        const y = yBase
-          + Math.sin(x * w.freq + t * w.speed) * w.amp
-          + Math.sin(x * w.freq * 1.9 - t * w.speed * 0.55) * (w.amp * 0.35)
-          + Math.cos(x * w.freq * 0.7 + t * w.speed * 0.3)  * (w.amp * 0.18);
-        ctx.lineTo(x, y);
-      }
-      ctx.lineTo(W, H);
-      ctx.closePath();
-      ctx.fillStyle = `rgba(${C}, ${w.alpha})`;
-      ctx.fill();
-    });
-  }
-
-  function drawStreams() {
-    STREAMS.forEach(s => {
-      const yBase = H * s.yFrac;
-      ctx.beginPath();
-      for (let x = 0; x <= W + 4; x += 3) {
-        const y = yBase
-          + Math.sin(x * s.freq + t * s.speed + s.phase) * s.amp
-          + Math.cos(x * s.freq * 2.3 - t * s.speed * 0.6 + s.phase) * (s.amp * 0.28);
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = `rgba(${C}, ${s.alpha})`;
-      ctx.lineWidth = s.lw;
-      ctx.stroke();
-    });
-  }
-
-  function drawRipples() {
-    for (let i = ripples.length - 1; i >= 0; i--) {
-      const rp = ripples[i];
-      const progress = rp.r / rp.maxR;
-      const eased = 1 - Math.pow(progress, 2);         // ease-out expansion
-      const a = rp.alpha * eased;
-
-      ctx.beginPath();
-      ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(${C}, ${a.toFixed(3)})`;
-      ctx.lineWidth = 1.2 * (1 - progress * 0.6);
-      ctx.stroke();
-
-      rp.r += 2.2 + rp.r * 0.03;    // accelerates slightly as it grows
-      if (rp.r >= rp.maxR) ripples.splice(i, 1);
+    function buildStreams() {
+      STREAMS = Array.from({ length: 14 }, (_, i) => ({
+        yFrac: 0.08 + (i / 13) * 0.86,
+        phase:  Math.random() * Math.PI * 2,
+        speed:  0.18 + Math.random() * 0.28,
+        amp:    4  + Math.random() * 12,
+        freq:   0.0018 + Math.random() * 0.003,
+        alpha:  0.025 + Math.random() * 0.038,
+        lw:     0.35 + Math.random() * 0.7,
+      }));
     }
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+
+    function addRipple(x, y, strength) {
+      ripples.push({ x, y, r: 2, maxR: 180 * strength, alpha: 0.38 * strength });
+      ripples.push({ x, y, r: 2, maxR: 110 * strength, alpha: 0.22 * strength });
+      ripples.push({ x, y, r: 2, maxR:  55 * strength, alpha: 0.14 * strength });
+    }
+
+    function drawWaves() {
+      WAVES.forEach(w => {
+        const yBase = H * w.yFrac;
+        ctx.beginPath();
+        ctx.moveTo(0, H);
+        for (let x = 0; x <= W + 4; x += 3) {
+          const y = yBase
+            + Math.sin(x * w.freq + t * w.speed) * w.amp
+            + Math.sin(x * w.freq * 1.9 - t * w.speed * 0.55) * (w.amp * 0.35)
+            + Math.cos(x * w.freq * 0.7 + t * w.speed * 0.3)  * (w.amp * 0.18);
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(W, H);
+        ctx.closePath();
+        ctx.fillStyle = `rgba(${C}, ${w.alpha})`;
+        ctx.fill();
+      });
+    }
+
+    function drawStreams() {
+      STREAMS.forEach(s => {
+        const yBase = H * s.yFrac;
+        ctx.beginPath();
+        for (let x = 0; x <= W + 4; x += 3) {
+          const y = yBase
+            + Math.sin(x * s.freq + t * s.speed + s.phase) * s.amp
+            + Math.cos(x * s.freq * 2.3 - t * s.speed * 0.6 + s.phase) * (s.amp * 0.28);
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = `rgba(${C}, ${s.alpha})`;
+        ctx.lineWidth = s.lw;
+        ctx.stroke();
+      });
+    }
+
+    function drawRipples() {
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        const rp = ripples[i];
+        const progress = rp.r / rp.maxR;
+        const a = rp.alpha * (1 - Math.pow(progress, 2));
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${C}, ${a.toFixed(3)})`;
+        ctx.lineWidth = 1.2 * (1 - progress * 0.6);
+        ctx.stroke();
+        rp.r += 2.2 + rp.r * 0.03;
+        if (rp.r >= rp.maxR) ripples.splice(i, 1);
+      }
+    }
+
+    function loop() {
+      ctx.clearRect(0, 0, W, H);
+      drawWaves();
+      drawStreams();
+      drawRipples();
+      t += 0.007;
+      requestAnimationFrame(loop);
+    }
+
+    // Ripple on mouse move over the parent container (throttled)
+    let lastMove = 0;
+    const parent = canvas.parentElement;
+    parent.addEventListener('mousemove', e => {
+      const now = performance.now();
+      if (now - lastMove < 220) return;
+      lastMove = now;
+      const r = canvas.getBoundingClientRect();
+      addRipple(e.clientX - r.left, e.clientY - r.top, 0.7);
+    });
+
+    parent.addEventListener('click', e => {
+      const r = canvas.getBoundingClientRect();
+      addRipple(e.clientX - r.left, e.clientY - r.top, 1.4);
+    });
+
+    window.addEventListener('resize', resize);
+    resize();
+    buildStreams();
+    loop();
   }
 
-  function loop() {
-    ctx.clearRect(0, 0, W, H);
-    drawWaves();
-    drawStreams();
-    drawRipples();
-    t += 0.007;
-    requestAnimationFrame(loop);
-  }
-
-  // Ripple on mouse move (throttled)
-  let lastMove = 0;
-  canvas.addEventListener('mousemove', e => {
-    const now = performance.now();
-    if (now - lastMove < 220) return;
-    lastMove = now;
-    const r = canvas.getBoundingClientRect();
-    addRipple(e.clientX - r.left, e.clientY - r.top, 0.7);
-  });
-
-  // Bigger ripple on click
-  canvas.addEventListener('click', e => {
-    const r = canvas.getBoundingClientRect();
-    addRipple(e.clientX - r.left, e.clientY - r.top, 1.4);
-  });
-
-  window.addEventListener('resize', resize);
-  resize();
-  buildStreams();
-  loop();
+  document.querySelectorAll('.water-canvas').forEach(initWaterCanvas);
 })();
 
 // ── Smooth active nav highlight on scroll ─────────────────────
