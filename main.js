@@ -114,10 +114,20 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
       H = canvas.height = canvas.offsetHeight;
     }
 
-    function addRipple(x, y, strength) {
-      ripples.push({ x, y, r: 2, maxR: 180 * strength, alpha: 0.38 * strength });
-      ripples.push({ x, y, r: 2, maxR: 110 * strength, alpha: 0.22 * strength });
-      ripples.push({ x, y, r: 2, maxR:  55 * strength, alpha: 0.14 * strength });
+    function addRipple(x, y, isClick) {
+      // tiny random jitter for organic feel
+      const jx = (Math.random() - 0.5) * 4;
+      const jy = (Math.random() - 0.5) * 4;
+      if (isClick) {
+        // click: 3 rings, still subtle
+        ripples.push({ x: x + jx, y: y + jy, r: 0, maxR: 188, alpha: 0.13 });
+        ripples.push({ x: x + jx, y: y + jy, r: 0, maxR: 54, alpha: 0.08 });
+        ripples.push({ x: x + jx, y: y + jy, r: 0, maxR: 28, alpha: 0.05 });
+      } else {
+        // hover: 2 hair-thin, very faint rings
+        ripples.push({ x: x + jx, y: y + jy, r: 0, maxR: 60, alpha: 0.13 });
+        ripples.push({ x: x + jx, y: y + jy, r: 0, maxR: 24, alpha: 0.028 });
+      }
     }
 
     function drawWaves() {
@@ -159,13 +169,14 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
       for (let i = ripples.length - 1; i >= 0; i--) {
         const rp = ripples[i];
         const progress = rp.r / rp.maxR;
-        const a = rp.alpha * (1 - Math.pow(progress, 2));
+        // linger visible then fade — pow < 1 keeps it present longer before dropping off
+        const a = rp.alpha * Math.pow(1 - progress, 1.3);
         ctx.beginPath();
-        ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${C}, ${a.toFixed(3)})`;
-        ctx.lineWidth = 1.2 * (1 - progress * 0.6);
+        ctx.arc(rp.x, rp.y, Math.max(rp.r, 0.5), 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${C}, ${a.toFixed(4)})`;
+        ctx.lineWidth = 0.65 * (1 - progress * 0.4);  // hair-thin
         ctx.stroke();
-        rp.r += 2.2 + rp.r * 0.03;
+        rp.r += 1.4;  // constant, gentle expansion (~55px/s at 60fps)
         if (rp.r >= rp.maxR) ripples.splice(i, 1);
       }
     }
@@ -184,15 +195,15 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     const parent = canvas.parentElement;
     parent.addEventListener('mousemove', e => {
       const now = performance.now();
-      if (now - lastMove < 220) return;
+      if (now - lastMove < 160) return;
       lastMove = now;
-      const r = canvas.getBoundingClientRect();
-      addRipple(e.clientX - r.left, e.clientY - r.top, 0.7);
+      const rect = canvas.getBoundingClientRect();
+      addRipple(e.clientX - rect.left, e.clientY - rect.top, false);
     });
 
     parent.addEventListener('click', e => {
-      const r = canvas.getBoundingClientRect();
-      addRipple(e.clientX - r.left, e.clientY - r.top, 1.4);
+      const rect = canvas.getBoundingClientRect();
+      addRipple(e.clientX - rect.left, e.clientY - rect.top, true);
     });
 
     window.addEventListener('resize', resize);
